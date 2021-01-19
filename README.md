@@ -1,7 +1,7 @@
 # freeHPC - Free HoloPlay Core SDK
 _Authors: Yann Vernier, Christian Stolze_
 
-This free library replicates some of the functionality of the proprietary HoloPlay Core SDK of the Looking Glass Factory. Its main purpose is to enable work with the Looking Glass devices with GPL'ed software. The authors of freeHPC are not associated with the Looking Glass Factory.
+This free library replicates some of the functionality of the proprietary HoloPlay Core SDK of the Looking Glass Factory under a [GPL compatible license](https://github.com/regcs/freehpc/blob/master/LICENSE). Its main purpose is to enable work with the Looking Glass devices with GPL'ed software. The authors of freeHPC are not associated with the Looking Glass Factory.
 
 ## Readme
 
