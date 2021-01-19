@@ -10,7 +10,7 @@ Some info will follow later.
 ## Known limitations:
 
 - pretty hacky solutions in general
-- requires [hidapi](https://github.com/libusb/hidapi) and the corresponfing python wrapper [pyhid](https://github.com/apmorton/pyhidapi) to be installed in your python environment
+- requires [hidapi](https://github.com/libusb/hidapi) and the corresponding python wrapper [pyhid](https://github.com/apmorton/pyhidapi) to be installed in your python environment
 - may fail to connect to Looking Glass under special circumstances on macOS
 - currently does not support Looking Glass Portrait
 
