@@ -16,4 +16,4 @@ Some info will follow later.
 
 ## License
 
-This python library is released under the MIT license.
+This python library is released under the [MIT license](https://github.com/regcs/freehpc/blob/master/LICENSE).
