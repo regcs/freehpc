@@ -2,7 +2,7 @@
 #
 # MIT License
 #
-# Copyright © 2020 Yann Vernier, Christian Stolze
+# Copyright © 2021 Yann Vernier, Christian Stolze
 # All rights reserved.
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -635,66 +635,3 @@ class freeHoloPlayCoreAPI:
             return next(item for item in self.devices if item["index"] == index)['viewCone']
         else:
             return 0.0
-
-
-
-
-# ################ Test Code ##################
-
-if __name__ == '__main__':
-
-    print("Initializing free HoloPlay Core replacement.")
-
-    # initialize free HoloPlayCore
-    hpc = freeHoloPlayCoreAPI()
-
-    errco = hpc.InitializeApp('Test', hpc.license_type.LICENSE_NONCOMMERCIAL.value)
-    if errco == 0:
-
-		# allocate string buffer
-        buffer = ctypes.create_string_buffer(1000)
-
-        # get HoloPlay Service Version
-        hpc.GetHoloPlayServiceVersion(buffer, 1000)
-        print(" # HoloPlay Service version: " + buffer.value.decode('ascii').strip())
-
-		# get HoloPlay Core SDK version
-        hpc.GetHoloPlayCoreVersion(buffer, 1000)
-        print(" # HoloPlay Core SDK version: " + buffer.value.decode('ascii').strip())
-
-        # get number of devices
-        print(" # Number of connected displays: " + str(hpc.GetNumDevices()))
-
-        for i in range(hpc.GetNumDevices()):
-            print(" # Device %i" % i)
-
-			# get device HDMI name
-            hpc.GetDeviceHDMIName(i, buffer, 1000)
-            dev_hdmi = buffer.value.decode('ascii').strip()
-
-            # get device serial
-            hpc.GetDeviceSerial(i, buffer, 1000)
-            dev_serial = buffer.value.decode('ascii').strip()
-
-            # get device type
-            hpc.GetDeviceType(i, buffer, 1000)
-            dev_type = buffer.value.decode('ascii').strip()
-
-            print("  - hdmi:", dev_hdmi)
-            print("  - serial:", dev_serial)
-            print("  - type:", dev_type)
-            # Calibration information
-            print("  - x:", hpc.GetDevicePropertyWinX(i))
-            print("  - y:", hpc.GetDevicePropertyWinY(i))
-            print("  - width:", hpc.GetDevicePropertyScreenW(i))
-            print("  - height:", hpc.GetDevicePropertyScreenH(i))
-            print("  - aspect:", hpc.GetDevicePropertyDisplayAspect(i))
-            print("  - pitch:", hpc.GetDevicePropertyPitch(i))
-            print("  - tilt:", hpc.GetDevicePropertyTilt(i))
-            print("  - center:", hpc.GetDevicePropertyCenter(i))
-            print("  - subp:", hpc.GetDevicePropertySubp(i))
-            print("  - fringe:", hpc.GetDevicePropertyFringe(i))
-            print("  - ri:", hpc.GetDevicePropertyRi(i))
-            print("  - bi:", hpc.GetDevicePropertyBi(i))
-            print("  - invView:", hpc.GetDevicePropertyInvView(i))
-            print("  - viewCone:", hpc.GetDevicePropertyFloat(i, b"/calibration/viewCone/value"))
