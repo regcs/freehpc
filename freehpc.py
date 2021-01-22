@@ -1,5 +1,8 @@
 # ############################## LICENSE BLOCK ###############################
 #
+#                      freeHPC - Free HoloPlay Core API
+#                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#
 # MIT License
 #
 # Copyright © 2021 Yann Vernier, Christian Stolze
@@ -38,6 +41,9 @@ from pprint import pprint
 # CHECK FOR PYTHON DEPENDENCIES, WHICH COULD NOT BE PRESENT
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+# Note: Use libhidapi-hidraw, i.e. hidapi with hidraw support,
+# or the joystick device will be gone when execution finishes.
+import hid as hidapi
 
 try:
 
@@ -48,10 +54,6 @@ try:
     python_dependecies = True
 
 except:
-
-    # Note: Use libhidapi-hidraw, i.e. hidapi with hidraw support,
-    # or the joystick device will be gone when execution finishes.
-    import hid as hidapi
 
     # not all python dependencies are fulfilled
     python_dependecies = False
@@ -441,7 +443,7 @@ class freeHoloPlayCoreAPI:
                 if display['_name'] == name:
 
                     # TODO: Are there keys that return the position?
-                    windowCoords = [int(display['_spdisplays_pixels'].split(" x ")[0]), int(display['_spdisplays_pixels'].split(" x ")[1])]
+                    windowCoords = [0, 0]
 
                     break
 
