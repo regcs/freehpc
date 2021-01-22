@@ -27,23 +27,23 @@
 
 import freehpc
 import ctypes
+from math import *
 
 # initialize free HoloPlayCore
 hpc = freehpc.freeHoloPlayCoreAPI()
-
 errco = hpc.InitializeApp('Test', hpc.license_type.LICENSE_NONCOMMERCIAL.value)
 if errco == 0:
 
     # allocate string buffer
     buffer = ctypes.create_string_buffer(1000)
 
+    # get HoloPlay Core SDK version
+    hpc.GetHoloPlayCoreVersion(buffer, 1000)
+    print(" # Free HoloPlay Core version: " + buffer.value.decode('ascii').strip())
+
     # get HoloPlay Service Version
     hpc.GetHoloPlayServiceVersion(buffer, 1000)
     print(" # HoloPlay Service version: " + buffer.value.decode('ascii').strip())
-
-    # get HoloPlay Core SDK version
-    hpc.GetHoloPlayCoreVersion(buffer, 1000)
-    print(" # HoloPlay Core SDK version: " + buffer.value.decode('ascii').strip())
 
     # get number of devices
     print(" # Number of connected displays: " + str(hpc.GetNumDevices()))
@@ -81,3 +81,5 @@ if errco == 0:
         print("  - bi:", hpc.GetDevicePropertyBi(i))
         print("  - invView:", hpc.GetDevicePropertyInvView(i))
         print("  - viewCone:", hpc.GetDevicePropertyFloat(i, b"/calibration/viewCone/value"))
+
+    hpc.CloseApp()
